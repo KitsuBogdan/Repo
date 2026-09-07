@@ -32,18 +32,3 @@ Description: Lightweight volume and silent-mode HUD for iOS 8.4.1.
 Author: KitsuBogdan
 Name: ModernLegacyHUD
 
-Package: local.modernlegacyhud
-Version: 0.1.0~alpha5
-Architecture: iphoneos-arm
-Maintainer: NonameScr
-Installed-Size: 264
-Depends: mobilesubstrate, preferenceloader, firmware (= 8.4.1)
-Filename: ./local.modernlegacyhud_0.1.0~alpha5_iphoneos-arm.deb
-Size: 25338
-MD5sum: e3603fb2ac02939073280b8ba1fb5e09
-SHA1: 898bf6ceee2b09038723260eaf644c6270eb15e5
-SHA256: 99ac95db0aac481255f9be9bbf75cb52dc299ed37e3e94661c863b49b9619e54
-Section: Tweaks
-Description: Lightweight volume and silent-mode HUD for iOS 8.4.1.
-Author: NonameScr
-
