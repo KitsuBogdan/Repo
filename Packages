@@ -1,16 +1,16 @@
 Package: com.kitsubogdan.modernlegacycc-lite
-Version: 0.1.0~alpha1-15-1+debug
+Version: 0.1.0~alpha1-16
 Architecture: iphoneos-arm
 Maintainer: KitsuBogdan
-Installed-Size: 280
+Installed-Size: 256
 Depends: mobilesubstrate, preferenceloader, firmware (>= 8.0)
-Filename: ./com.kitsubogdan.modernlegacycc-lite_0.1.0~alpha1-15-1+debug_iphoneos-arm.deb
-Size: 27416
-MD5sum: 8c36a4b2f983bf68b215573c655de699
-SHA1: 91c925b1b2e3df940c28ea2cc2233c3bf9874c10
-SHA256: 8e31025489a261bc7bbfb879b7e75562bafb3a14dc0bccbeaeffbdac730ef240
+Filename: ./com.kitsubogdan.modernlegacycc-lite_0.1.0~alpha1-16_iphoneos-arm.deb
+Size: 24090
+MD5sum: dd15b5ee970aa9d08fd235e6fd5a35f2
+SHA1: 9c5489d073034e65f8050bb38fdbc0568cf5f184
+SHA256: f173892a7e35e2f16e79675a704ec32519b43fd3447bcff909bc1e1a125cac35
 Section: Tweaks
-Description: Native iOS 8 Control Center styling with live theme settings and lighter dimming
+Description: Native iOS 8 Control Center styling with live themes, slider icons and orientation-aware toggles
 Author: KitsuBogdan
 Name: ModernLegacyCC Lite
 
