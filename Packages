@@ -23,10 +23,10 @@ Depends: mobilesubstrate, preferenceloader, firmware (= 8.4.1)
 Conflicts: local.modernlegacyhud
 Replaces: local.modernlegacyhud
 Filename: ./com.kitsubogdan.modernlegacyhud_0.1.0~alpha12_iphoneos-arm.deb
-Size: 1103184
-MD5sum: bb7077b5a13acd15623732c946f459f9
-SHA1: 49bc454d7f01ded56c12130cefabcbde04d96688
-SHA256: 4118d3703ed718d22f018aaf1b36cfe4ebe4457cdb04c9f44bf75379360d0479
+Size: 1103238
+MD5sum: 54599d132fa9f203095cba3e8607ab2f
+SHA1: 61cd71d48c53b95526abbc87dde0643cfaa4627e
+SHA256: 324d9ef90532344c932ca019d9d2744196d5148c22f25ec60229f6b947764799
 Section: Tweaks
 Description: iOS 13+ style customizable volume and silent-mode HUD for iOS 8.4.1.
 Author: KitsuBogdan
