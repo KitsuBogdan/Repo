@@ -16,3 +16,22 @@ Description: Modern styled Control Center for iOS 8 with themes, localization, c
 Author: KitsuBogdan
 Name: ModernLegacyCC
 
+Package: com.kitsubogdan.modernlegacyhud
+Version: 0.1.0~rc2
+Architecture: iphoneos-arm
+Maintainer: KitsuBogdan
+Installed-Size: 360
+Depends: mobilesubstrate, preferenceloader, firmware (>= 8.0), firmware (<< 10.0)
+Conflicts: local.modernlegacyhud
+Replaces: local.modernlegacyhud
+Filename: debs/com.kitsubogdan.modernlegacyhud_0.1.0~rc2_iphoneos-arm.deb
+Size: 77964
+MD5sum: 5eb1f6e035b1a498c570b828ca78ef5d
+SHA1: a161bbf430de702ba6854668fbb8157856d8f05d
+SHA256: 9a2335b936601fc722b55cf6dacb99f740eda694a15a828a67414eb1d2588902
+Section: Tweaks
+Description: iOS 13+ style customizable volume, silent-mode and rotation-lock HUD for 32-bit iOS 8.0-9.3.6 devices.
+Author: KitsuBogdan
+Icon: file:///Library/PreferenceBundles/ModernLegacyHUDPrefs.bundle/ModernLegacyHUDCydia.png
+Name: ModernLegacyHUD
+
