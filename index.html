@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#140d24">
+  <title>Noname Scripts — Legacy iOS Tweaks</title>
+  <meta name="description" content="ModernLegacy tweaks for legacy iOS devices: HUD, Control Center and Notification Center redesigns.">
+  <link rel="icon" href="CydiaIcon.png">
+  <style>
+    :root {
+      --bg: #0d0915;
+      --panel: rgba(255,255,255,.07);
+      --panel-strong: rgba(255,255,255,.11);
+      --text: #f7f4ff;
+      --muted: #b9b0cb;
+      --line: rgba(255,255,255,.12);
+      --accent: #9d68ff;
+      --accent-2: #d05cff;
+      --green: #7ce5ac;
+      --shadow: 0 24px 70px rgba(0,0,0,.34);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(157,104,255,.25), transparent 32%),
+        radial-gradient(circle at 90% 15%, rgba(208,92,255,.18), transparent 30%),
+        linear-gradient(180deg, #120b20 0%, var(--bg) 52%, #09060f 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .35;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(to bottom, black, transparent 72%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #ba8dff, #7444e6 58%, #432291);
+      box-shadow: 0 10px 28px rgba(126,68,230,.32), inset 0 1px rgba(255,255,255,.4);
+      position: relative;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      left: 9px;
+      right: 9px;
+      border: 3px solid rgba(255,255,255,.85);
+      border-bottom: 0;
+      border-radius: 16px 16px 0 0;
+    }
+    .brand-mark::before { top: 8px; height: 8px; }
+    .brand-mark::after { top: 15px; height: 6px; left: 13px; right: 13px; }
+
+    nav { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    nav a {
+      color: var(--muted);
+      padding: 9px 12px;
+      border-radius: 12px;
+      transition: .2s ease;
+    }
+    nav a:hover { color: var(--text); background: rgba(255,255,255,.06); }
+
+    .hero {
+      padding: 82px 0 54px;
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      color: #d8c8ff;
+      border: 1px solid rgba(181,142,255,.24);
+      background: rgba(132,84,225,.10);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px rgba(124,229,172,.8); }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(48px, 7vw, 86px);
+      line-height: .98;
+      letter-spacing: -3.5px;
+      max-width: 780px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #fff 0%, #d5c4ff 45%, #ae79ff 72%, #ef85ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+      max-width: 680px;
+      margin: 24px 0 28px;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 0 17px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.18); }
+    .btn.primary {
+      background: linear-gradient(135deg, #8b57ef, #b45df6);
+      border-color: transparent;
+      box-shadow: 0 14px 34px rgba(137,82,235,.30);
+    }
+
+    .repo-url {
+      margin-top: 14px;
+      color: #958ba7;
+      font-size: 13px;
+      word-break: break-all;
+    }
+
+    .device {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.045));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 390px;
+    }
+
+    .device::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -60px;
+      top: -70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(182,97,255,.34), transparent 70%);
+      filter: blur(4px);
+    }
+
+    .mock-top { display: flex; gap: 9px; margin-bottom: 14px; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.24); }
+
+    .mock-stack { display: grid; gap: 12px; }
+    .mock-card {
+      border-radius: 22px;
+      background: rgba(16,12,25,.70);
+      border: 1px solid rgba(255,255,255,.11);
+      padding: 16px;
+      backdrop-filter: blur(18px);
+    }
+    .mock-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mock-controls { display: flex; gap: 9px; flex-wrap: wrap; }
+    .mock-circle { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,.13); position: relative; }
+    .mock-circle.active { background: linear-gradient(145deg, #8d63f2, #b966f8); }
+    .mock-line { height: 10px; border-radius: 999px; background: rgba(255,255,255,.16); }
+    .mock-line + .mock-line { margin-top: 9px; width: 72%; }
+    .mock-hud { display: flex; align-items: center; gap: 14px; }
+    .speaker { font-size: 30px; opacity: .92; }
+    .bar { flex: 1; height: 12px; border-radius: 999px; background: rgba(255,255,255,.11); overflow: hidden; }
+    .bar span { display: block; width: 64%; height: 100%; background: linear-gradient(90deg,#b084ff,#e181ff); border-radius: inherit; }
+
+    section { padding: 52px 0; }
+    .section-title { font-size: 34px; margin: 0 0 10px; letter-spacing: -1px; }
+    .section-sub { color: var(--muted); margin: 0 0 26px; line-height: 1.6; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card {
+      border-radius: 22px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.045));
+      box-shadow: 0 18px 50px rgba(0,0,0,.20);
+      min-height: 220px;
+    }
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, rgba(171,115,255,.26), rgba(119,62,209,.18));
+      border: 1px solid rgba(198,155,255,.16);
+      margin-bottom: 18px;
+    }
+    .icon svg { width: 26px; height: 26px; stroke: #dec8ff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .card h3 { margin: 0 0 8px; font-size: 21px; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.58; font-size: 14px; }
+    .status { display: inline-flex; margin-top: 18px; font-size: 12px; color: #cdb7ff; background: rgba(158,103,255,.12); padding: 6px 9px; border-radius: 999px; border: 1px solid rgba(177,126,255,.15); }
+
+    .install {
+      border: 1px solid rgba(172,119,255,.22);
+      border-radius: 26px;
+      padding: 28px;
+      background: linear-gradient(135deg, rgba(126,73,222,.18), rgba(207,92,255,.10));
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 20px;
+    }
+    .install h2 { margin: 0 0 7px; font-size: 28px; }
+    .install p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    .note {
+      margin-top: 18px;
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #aaa0bb;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    footer { padding: 38px 0 46px; color: #82788e; font-size: 13px; }
+    footer .foot { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.08); }
+
+    .toast {
+      position: fixed;
+      left: 50%; bottom: 24px;
+      transform: translate(-50%, 20px);
+      opacity: 0;
+      pointer-events: none;
+      padding: 11px 14px;
+      border-radius: 13px;
+      color: #fff;
+      background: rgba(20,15,31,.92);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      transition: .2s ease;
+      z-index: 30;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; padding-top: 48px; }
+      .device { min-height: 340px; }
+      .grid { grid-template-columns: 1fr; }
+      .install { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      header { align-items: flex-start; }
+      nav { display: none; }
+      h1 { letter-spacing: -2px; }
+      .hero { gap: 30px; }
+      .mock-row { grid-template-columns: 1fr; }
+      .wrap { width: min(100% - 22px, 1120px); }
+      section { padding: 38px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#top" aria-label="Noname Scripts home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Noname Scripts</span>
+      </a>
+      <nav aria-label="Primary">
+        <a href="#tweaks">Tweaks</a>
+        <a href="#install">Add Repo</a>
+        <a href="https://github.com/KitsuBogdan/Repo">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Legacy iOS, modernized</div>
+          <h1><span class="gradient-text">Modern design for legacy iOS.</span></h1>
+          <p class="lead">ModernLegacy tweaks refresh the look of older 32-bit iOS devices while keeping the original system behavior wherever possible.</p>
+          <div class="actions">
+            <a class="btn primary" href="cydia://url/https://cydia.saurik.com/api/share#?source=https://kitsubogdan.github.io/Repo/">Add to Cydia</a>
+            <button class="btn" type="button" onclick="copyRepo()">Copy repo URL</button>
+            <a class="btn" href="#tweaks">View tweaks</a>
+          </div>
+          <div class="repo-url">https://kitsubogdan.github.io/Repo/</div>
+        </div>
+
+        <div class="device" aria-label="ModernLegacy interface preview">
+          <div class="mock-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="mock-stack">
+            <div class="mock-card">
+              <div class="mock-controls">
+                <span class="mock-circle active"></span><span class="mock-circle active"></span><span class="mock-circle"></span><span class="mock-circle"></span><span class="mock-circle"></span>
+              </div>
+            </div>
+            <div class="mock-row">
+              <div class="mock-card">
+                <div class="mock-hud"><span class="speaker">◖</span><div class="bar"><span></span></div></div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-line" style="width:92%"></div><div class="mock-line"></div><div class="mock-line" style="width:54%"></div>
+              </div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-line" style="width:48%"></div><div class="mock-line" style="width:86%"></div><div class="mock-line" style="width:66%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tweaks">
+        <h2 class="section-title">ModernLegacy series</h2>
+        <p class="section-sub">Focused visual upgrades for legacy iOS devices.</p>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 9h3l4-3v12l-4-3H5z"/><path d="M15 9.5c1.2 1.2 1.2 3.8 0 5"/><path d="M17.5 7.5c2.4 2.4 2.4 6.6 0 9"/></svg>
+            </div>
+            <h3>ModernLegacyHUD</h3>
+            <p>iOS 13+ inspired Volume, Silent/Ringer and Rotation Lock HUD for legacy devices.</p>
+            <span class="status">Available</span>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/><circle cx="8" cy="6" r="2" fill="#dec8ff" stroke="none"/><circle cx="16" cy="12" r="2" fill="#dec8ff" stroke="none"/><circle cx="10" cy="18" r="2" fill="#dec8ff" stroke="none"/></svg>
+            </div>
+            <h3>ModernLegacyCC</h3>
+            <p>Modernized Control Center styling with updated toggles, sliders, spacing and visual hierarchy.</p>
+            <span class="status">Available</span>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="4"/><path d="M8 9h8"/><path d="M8 13h5"/></svg>
+            </div>
+            <h3>ModernLegacyNC</h3>
+            <p>Experimental iOS 13+ inspired Notification Center redesign with floating cards and refreshed materials.</p>
+            <span class="status">In development</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="install">
+        <div class="install">
+          <div>
+            <h2>Add the repository</h2>
+            <p>Add the repo to Cydia, refresh sources, then search for a ModernLegacy package.</p>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="cydia://url/https://cydia.saurik.com/api/share#?source=https://kitsubogdan.github.io/Repo/">Open in Cydia</a>
+            <button class="btn" type="button" onclick="copyRepo()">Copy URL</button>
+          </div>
+        </div>
+        <div class="note">Primary testing has been done on an iPad 2 running iOS 8.4.1. Other devices and versions may require additional testing.</div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="foot">
+        <span>© 2026 Noname Scripts</span>
+        <span>Repository by KitsuBogdan</span>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast">Repo URL copied</div>
+  <script>
+    function copyRepo() {
+      var url = 'https://kitsubogdan.github.io/Repo/';
+      var toast = document.getElementById('toast');
+      function done() {
+        toast.classList.add('show');
+        setTimeout(function(){ toast.classList.remove('show'); }, 1600);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done).catch(fallback);
+      } else { fallback(); }
+      function fallback() {
+        var t = document.createElement('textarea');
+        t.value = url; document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(t); done();
+      }
+    }
+  </script>
+</body>
+</html>
