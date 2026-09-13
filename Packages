@@ -1,35 +1,18 @@
-Package: com.kitsubogdan.modernlegacycc-lite
-Version: 0.1.0~alpha1-16
+Package: com.kitsubogdan.modernlegacycc
+Version: 0.1.0
 Architecture: iphoneos-arm
 Maintainer: KitsuBogdan
-Installed-Size: 256
-Depends: mobilesubstrate, preferenceloader, firmware (>= 8.0)
-Filename: ./com.kitsubogdan.modernlegacycc-lite_0.1.0~alpha1-16_iphoneos-arm.deb
-Size: 24090
-MD5sum: dd15b5ee970aa9d08fd235e6fd5a35f2
-SHA1: 9c5489d073034e65f8050bb38fdbc0568cf5f184
-SHA256: f173892a7e35e2f16e79675a704ec32519b43fd3447bcff909bc1e1a125cac35
+Installed-Size: 287
+Depends: mobilesubstrate, preferenceloader, firmware (>= 8.0), firmware (<< 9.0)
+Conflicts: com.kitsubogdan.modernlegacycc-lite
+Replaces: com.kitsubogdan.modernlegacycc-lite
+Filename: debs/com.kitsubogdan.modernlegacycc_0.1.0_iphoneos-arm.deb
+Size: 49692
+MD5sum: ad77d5f80dd76919248c8957a7f785f0
+SHA1: bf8d5a5fb4c65593c3cf5099c7665b40201b93c7
+SHA256: 9d31cac620f598c8be5e19005df2d031c598f58f1ed2824b047776c182c7ff26
 Section: Tweaks
-Description: Native iOS 8 Control Center styling with live themes, slider icons and orientation-aware toggles
+Description: Modern styled Control Center for iOS 8 with themes, localization, corner styles, legacy preference migration and release-safe logging
 Author: KitsuBogdan
-Name: ModernLegacyCC Lite
-
-Package: com.kitsubogdan.modernlegacyhud
-Version: 0.1.0~rc2
-Architecture: iphoneos-arm
-Maintainer: KitsuBogdan
-Installed-Size: 360
-Depends: mobilesubstrate, preferenceloader, firmware (>= 8.0), firmware (<< 10.0)
-Conflicts: local.modernlegacyhud
-Replaces: local.modernlegacyhud
-Filename: ./com.kitsubogdan.modernlegacyhud_0.1.0~rc2_iphoneos-arm.deb
-Size: 77964
-MD5sum: 5eb1f6e035b1a498c570b828ca78ef5d
-SHA1: a161bbf430de702ba6854668fbb8157856d8f05d
-SHA256: 9a2335b936601fc722b55cf6dacb99f740eda694a15a828a67414eb1d2588902
-Section: Tweaks
-Description: iOS 13+ style customizable volume, silent-mode and rotation-lock HUD for 32-bit iOS 8.0-9.3.6 devices.
-Author: KitsuBogdan
-Icon: file:///Library/PreferenceBundles/ModernLegacyHUDPrefs.bundle/ModernLegacyHUDCydia.png
-Name: ModernLegacyHUD
+Name: ModernLegacyCC
 
