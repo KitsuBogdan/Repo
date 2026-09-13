@@ -15,18 +15,18 @@ Author: KitsuBogdan
 Name: ModernLegacyCC Lite
 
 Package: com.kitsubogdan.modernlegacyhud
-Version: 0.1.0~alpha20
+Version: 0.1.0~rc1
 Architecture: iphoneos-arm
 Maintainer: KitsuBogdan
 Installed-Size: 356
 Depends: mobilesubstrate, preferenceloader, firmware (= 8.4.1)
 Conflicts: local.modernlegacyhud
 Replaces: local.modernlegacyhud
-Filename: ./com.kitsubogdan.modernlegacyhud_0.1.0~alpha20_iphoneos-arm.deb
-Size: 77444
-MD5sum: 5e40108245cb1d593d692004a91ab91c
-SHA1: 1119383c347ee3bd117fd64f7ccc80b211e8f16a
-SHA256: c85e5de70113fdea3c75c525a245ec7308945847fa82ea7cc918c695ea5a668a
+Filename: ./com.kitsubogdan.modernlegacyhud_0.1.0~rc1_iphoneos-arm.deb
+Size: 77368
+MD5sum: a27c6a1d587b74e2c35bc1e91ea2cf6e
+SHA1: 4c2c636a1e2a28adc0073dccaf58ff32cb0a503e
+SHA256: 1e917f5f33e385d051d422e6dd25053e96007e68076a06f99992d3d2e5b02859
 Section: Tweaks
 Description: iOS 13+ style customizable volume, silent-mode and rotation-lock HUD for 32-bit iOS 8.4.1 devices.
 Author: KitsuBogdan
