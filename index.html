@@ -7,6 +7,16 @@
   <title>Noname Scripts — Legacy iOS Tweaks</title>
   <meta name="description" content="ModernLegacy tweaks for legacy iOS devices: HUD, Control Center and Notification Center redesigns.">
   <link rel="icon" href="CydiaIcon.png">
+  <script>
+    (function () {
+      var ua = navigator.userAgent || '';
+      var ios = ua.match(/OS (\d+)[._](\d+)/i);
+      var isIOS = /iPad|iPhone|iPod/i.test(ua);
+      var major = ios ? parseInt(ios[1], 10) : 99;
+      var oldWebKit = isIOS && major <= 9;
+      document.documentElement.className += oldWebKit ? ' legacy-ios' : ' modern-ios';
+    }());
+  </script>
   <style>
     :root {
       --bg: #0d0915;
@@ -307,6 +317,291 @@
       .wrap { width: min(100% - 22px, 1120px); }
       section { padding: 38px 0; }
     }
+
+    /* Lightweight fallback for iOS 8/9 WebKit.
+       Avoids CSS variables, Grid, backdrop-filter, clamp() and min(). */
+    .legacy-only { display: none; }
+
+    html.legacy-ios,
+    html.legacy-ios body {
+      background: #130c22;
+      color: #f7f4ff;
+      min-height: 100%;
+    }
+
+    html.legacy-ios body {
+      font-family: -apple-system, Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+      background-color: #130c22;
+      background-image: linear-gradient(#25123d, #130c22 55%, #0b0711);
+    }
+
+    html.legacy-ios body::before { display: none; }
+    html.legacy-ios .legacy-only {
+      display: block;
+      margin: 12px 0 0;
+      padding: 10px 12px;
+      border: 1px solid #6e4a9f;
+      border-radius: 10px;
+      color: #d8c8ff;
+      background: #211330;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    html.legacy-ios .wrap {
+      width: 92%;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    html.legacy-ios header {
+      display: block;
+      padding: 16px 0 12px;
+      border-bottom: 1px solid #3b2b4c;
+    }
+
+    html.legacy-ios .brand {
+      display: inline-block;
+      color: #ffffff;
+      font-size: 20px;
+      line-height: 38px;
+      vertical-align: middle;
+    }
+
+    html.legacy-ios .brand-mark {
+      display: none;
+    }
+
+    html.legacy-ios nav {
+      display: block;
+      margin-top: 5px;
+      text-align: left;
+    }
+
+    html.legacy-ios nav a {
+      display: inline-block;
+      padding: 7px 10px 7px 0;
+      margin-right: 12px;
+      color: #cab8dc;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    html.legacy-ios .hero {
+      display: block;
+      padding: 34px 0 30px;
+    }
+
+    html.legacy-ios .eyebrow {
+      display: inline-block;
+      padding: 7px 10px;
+      margin-bottom: 14px;
+      color: #e2d3ff;
+      background: #2d1943;
+      border: 1px solid #563777;
+      border-radius: 14px;
+    }
+
+    html.legacy-ios .eyebrow-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 6px;
+      border-radius: 7px;
+      background: #7ce5ac;
+      box-shadow: none;
+    }
+
+    html.legacy-ios h1 {
+      margin: 0;
+      max-width: none;
+      color: #ffffff;
+      font-size: 46px;
+      line-height: 1.05;
+      letter-spacing: -2px;
+    }
+
+    html.legacy-ios .gradient-text {
+      color: #c99cff;
+      background: none;
+      -webkit-background-clip: border-box;
+      background-clip: border-box;
+    }
+
+    html.legacy-ios .lead {
+      max-width: 700px;
+      margin: 18px 0 20px;
+      color: #c3b7cf;
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    html.legacy-ios .actions {
+      display: block;
+    }
+
+    html.legacy-ios .btn {
+      display: inline-block;
+      min-height: 0;
+      padding: 11px 15px;
+      margin: 0 8px 8px 0;
+      color: #ffffff;
+      border: 1px solid #5c466d;
+      border-radius: 10px;
+      background: #25182f;
+      box-shadow: none;
+      -webkit-appearance: none;
+    }
+
+    html.legacy-ios .btn.primary {
+      background: #8e52dc;
+      border-color: #a668ef;
+      box-shadow: none;
+    }
+
+    html.legacy-ios .repo-url {
+      margin-top: 8px;
+      color: #a89bb5;
+      font-size: 12px;
+    }
+
+    html.legacy-ios .device {
+      display: none;
+    }
+
+    html.legacy-ios section {
+      padding: 32px 0;
+    }
+
+    html.legacy-ios .section-title {
+      margin: 0 0 8px;
+      color: #ffffff;
+      font-size: 30px;
+      letter-spacing: -1px;
+    }
+
+    html.legacy-ios .section-sub {
+      margin: 0 0 18px;
+      color: #b8acc4;
+      line-height: 1.5;
+    }
+
+    html.legacy-ios .grid {
+      display: block;
+    }
+
+    html.legacy-ios .card {
+      display: block;
+      min-height: 0;
+      margin: 0 0 14px;
+      padding: 18px;
+      color: #f7f4ff;
+      border: 1px solid #49355c;
+      border-radius: 16px;
+      background: #21152c;
+      box-shadow: none;
+    }
+
+    html.legacy-ios .icon {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 12px;
+      color: #dec8ff;
+      border: 1px solid #563777;
+      border-radius: 12px;
+      background: #332047;
+    }
+
+    html.legacy-ios .card h3 {
+      color: #ffffff;
+      font-size: 20px;
+      margin: 0 0 7px;
+    }
+
+    html.legacy-ios .card p {
+      color: #bfb2cb;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    html.legacy-ios .status {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 9px;
+      color: #dac9ff;
+      border: 1px solid #543a70;
+      border-radius: 12px;
+      background: #2c1b3c;
+    }
+
+    html.legacy-ios .install {
+      display: block;
+      padding: 20px;
+      color: #f7f4ff;
+      border: 1px solid #5d3d78;
+      border-radius: 16px;
+      background: #251638;
+    }
+
+    html.legacy-ios .install h2 {
+      color: #ffffff;
+      font-size: 25px;
+    }
+
+    html.legacy-ios .install p,
+    html.legacy-ios .note {
+      color: #bcb0c8;
+    }
+
+    html.legacy-ios .install .actions {
+      margin-top: 14px;
+    }
+
+    html.legacy-ios .note {
+      margin-top: 14px;
+      padding: 13px;
+      border: 1px solid #41324e;
+      border-radius: 12px;
+      background: #1a1022;
+    }
+
+    html.legacy-ios footer {
+      padding: 28px 0 36px;
+      color: #8f829a;
+    }
+
+    html.legacy-ios footer .foot {
+      display: block;
+      padding-top: 18px;
+      border-top: 1px solid #3b2b4c;
+    }
+
+    html.legacy-ios footer .foot span {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    html.legacy-ios .toast {
+      left: 10%;
+      right: 10%;
+      bottom: 18px;
+      transform: none;
+      text-align: center;
+      color: #ffffff;
+      background: #21152c;
+      border: 1px solid #4c385d;
+      border-radius: 10px;
+      box-shadow: none;
+    }
+
+    html.legacy-ios .toast.show { transform: none; }
+
+    @media (max-width: 700px) {
+      html.legacy-ios h1 { font-size: 36px; }
+      html.legacy-ios .wrap { width: 94%; }
+      html.legacy-ios nav a { font-size: 14px; }
+    }
   </style>
 </head>
 <body>
@@ -335,6 +630,7 @@
             <a class="btn" href="#tweaks">View tweaks</a>
           </div>
           <div class="repo-url">https://kitsubogdan.github.io/Repo/</div>
+          <div class="legacy-only">Legacy compatibility mode detected. This simplified layout is optimized for older Safari/WebKit on iOS 8 and iOS 9.</div>
         </div>
 
         <div class="device" aria-label="ModernLegacy interface preview">
