@@ -1,18 +1,18 @@
 Package: com.kitsubogdan.modernlegacycc
-Version: 0.1.0
+Version: 0.1.1
 Architecture: iphoneos-arm
 Maintainer: KitsuBogdan
 Installed-Size: 1703
-Depends: mobilesubstrate, preferenceloader, firmware (>= 8.0), firmware (<< 9.0)
+Depends: mobilesubstrate, preferenceloader, firmware (>= 8.0), firmware (<< 10.0)
 Conflicts: com.kitsubogdan.modernlegacycc-lite
 Replaces: com.kitsubogdan.modernlegacycc-lite
-Filename: debs/com.kitsubogdan.modernlegacycc_0.1.0_iphoneos-arm.deb
-Size: 1476880
-MD5sum: 0f599dde4a51af186ac252835efc1152
-SHA1: f105b0026309bc8b3cf22c028c68dc40a9c7425a
-SHA256: 0d0a6148a474a2093fbd1d034f2736087e31d6c57d278ea3a3459a29bf7793a3
+Filename: debs/com.kitsubogdan.modernlegacycc_0.1.1_iphoneos-arm.deb
+Size: 1476792
+MD5sum: d3c40297c99da7708e368245536832e8
+SHA1: 5da4720b8d57b37724bc5d4c324adc721915e289
+SHA256: c967b3ff5912c6e35c21dc8e8bb57b46973cc5ad7b962eec3d7a492da77e85b2
 Section: Tweaks
-Description: Refined iOS 13-inspired Control Center design for iOS 8 with themes, localization, fixed modern geometry, legacy preference migration and release-safe logging
+Description: Refined iOS 13-inspired Control Center for iOS 8.0–9.3.6 with themes, localization, fixed modern geometry, fail-closed runtime hook validation and release-safe logging
 Author: KitsuBogdan
 Icon: file:///Library/PreferenceBundles/ModernLegacyCCPrefs.bundle/ModernLegacyCCCydia.png
 Name: ModernLegacyCC
